@@ -1,0 +1,69 @@
+ALERT User_Management_sync_ProcessDown
+  IF Pentaho_um_sync_STATUS  == 1
+  FOR 1m
+  LABELS { severity = "CRITICAL" }
+  ANNOTATIONS {
+    summary = " Pentaho job down",
+    description = "{{ $labels.group }}-{{$labels.instance}} - Processhas been down for more than 1 minute.",
+  }
+
+ALERT Pentaho_config_sync_ProcessDown
+  IF Pentaho_config_sync_STATUS  == 1
+  FOR 1m
+  LABELS { severity = "CRITICAL" }
+  ANNOTATIONS {
+    summary = " Pentaho job down",
+    description = "{{ $labels.group }}-{{$labels.instance}} - Processhas been down for more than 1 minute.",
+  }
+
+ALERT Pentaho_sync_save_search_ProcessDown
+  IF Pentaho_sync_save_search_STATUS  == 1
+  FOR 1m
+  LABELS { severity = "CRITICAL" }
+  ANNOTATIONS {
+    summary = " Pentaho job down",
+    description = "{{ $labels.group }}-{{$labels.instance}} - Processhas been down for more than 1 minute.",
+  }
+
+ALERT Pentaho_sync_stone_ProcessDown
+  IF Pentaho_sync_stone_STATUS  == 1
+  FOR 1m
+  LABELS { severity = "CRITICAL" }
+  ANNOTATIONS {
+    summary = " Pentaho job down",
+    description = "{{ $labels.group }}-{{$labels.instance}} - Processhas been down for more than 1 minute.",
+  }
+
+ALERT Pentaho_user_data_sync_processDown
+  IF Pentaho_user_data_sync_STATUS  == 1
+  FOR 1m
+  LABELS { severity = "CRITICAL" }
+  ANNOTATIONS {
+    summary = " Pentaho job down",
+    description = "{{ $labels.group }}-{{$labels.instance}} - Processhas been down for more than 1 minute.",
+  }
+
+ALERT workflow_ms_ProcessDown
+  IF workflow_ms_STATUS  == 1
+  FOR 1m
+  LABELS { severity = "CRITICAL" }
+  ANNOTATIONS {
+    summary = " Java process  down",
+    description = "{{ $labels.group }}-{{$labels.instance}} - Processhas been down for more than 1 minute.",
+  }
+ALERT authorization_ms_ProcessDown
+  IF authorization_ms_STATUS  == 1
+  FOR 1m
+  LABELS { severity = "CRITICAL" }
+  ANNOTATIONS {
+    summary = " Java process  down",
+    description = "{{ $labels.group }}-{{$labels.instance}} - Processhas been down for more than 1 minute.",
+  }
+ALERT dashboard_ms_ProcessDown
+  IF dashboard_ms_STATUS  == 1
+  FOR 1m
+  LABELS { severity = "CRITICAL" }
+  ANNOTATIONS {
+    summary = " Java process  down",
+    description = "{{ $labels.group }}-{{$labels.instance}} - Processhas been down for more than 1 minute.",
+  }

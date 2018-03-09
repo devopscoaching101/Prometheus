@@ -1,0 +1,10 @@
+[unit]
+Description=mtail service,pravin.magdum@crevise.com,priyanka.dive@crevise.com
+After=network-online.target
+
+[Service]
+User=ubuntu
+Restart=on-failure
+ExecStart=/bin/mtail -port 3093 -progs /home/ubuntu/nginx-prometheus-exporter/files/progs -metric_push_interval_seconds 2 -alsologtostderr -logs /var/log/nginx/access.log
+[Install]
+WantedBy=multi-user.target

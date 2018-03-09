@@ -1,0 +1,22 @@
+---
+global:
+  evaluation_interval: 15s
+  external_labels:
+    monitor: 'Prometheus_Alerts'
+  scrape_interval: 15s
+rule_files:
+  - "alert.rules"
+  - "processalert.rules"
+scrape_configs:
+  -
+    job_name: 'node'
+    static_configs:
+      - targets:
+          - "prodswarm-1:9100"
+          - "prodswarm-2:9100"
+          - "prodswarm-3:9100"
+          - "prodswarm-4:9100"
+          - "pentaho:9100"
+          - "prodswarm-5:9100"
+        labels:
+            group: 'Production-trad'

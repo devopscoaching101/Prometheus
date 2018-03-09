@@ -1,0 +1,9 @@
+[Unit]
+Description=mtail service,pravin.magdum@crevise.com,priyanka.dive@crevise.com
+After=network-online.target
+[Service]
+User=root
+Restart=on-failure
+ExecStart=/usr/sbin/node_exporter --collector.textfile.directory=/home/srkay/monitor/Metrics  >>/home/srkay/monitor/logs/node_exporter.log 2>&1 &
+[Install]
+WantedBy=multi-user.target

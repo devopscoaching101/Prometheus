@@ -1,0 +1,17 @@
+global:
+route:
+  receiver: default
+  group_wait: 10s
+  group_interval: 1m
+  repeat_interval: 4h
+receivers:
+- name: "default"
+  email_configs:
+  - to: 'test.account@gmail.com'
+   # html: '{{ template "email" . }}'
+    from: 'admin@gmail.com'
+    smarthost: 'smtp.gmail.com:587'
+    require_tls: true
+    auth_username: 'admin@gmail.com'
+    auth_identity: 'admin@gmail.com'
+    auth_password: ''

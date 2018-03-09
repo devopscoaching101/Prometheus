@@ -1,0 +1,36 @@
+ALERT InstanceDown
+  IF up == 0
+  FOR 10m
+  LABELS { severity = "CRITICAL" }
+  ANNOTATIONS {
+    summary = "Instance down",
+    description = "{{ $labels.group }}-{{$labels.instance}} - instance has been down for more than 10 minute.",
+  }
+ALERT NodeCPUUsage
+  IF (100 - (avg by (instance) (irate(node_cpu{job="node",mode="idle"}[1m])) * 100)) > 75
+  FOR 2m
+  LABELS {
+    severity="CRITICAL"
+  }
+  ANNOTATIONS {
+    SUMMARY = "{{ $labels.group }}-{{$labels.instance}}: High CPU usage detected",
+    DESCRIPTION = " CPU usage is above 75% (current value is: {{ $value }})"
+  }
+ALERT mem_threshold_exceeded
+  IF (node_memory_MemFree{job='node'} + node_memory_Cached{job='node'} + node_memory_Buffers{job='node'})/1000000 > 7000
+  LABELS {
+    severity="CRITICAL"
+  }
+  ANNOTATIONS {
+    summary = "{{ $labels.group }}- {{ $labels.instance }} High memory usage detected",
+    description = "This device's memory usage has exceeded the threshold with a value of {{ $value }}.",
+  }
+ALERT filesystem_threshold_exceeded
+  IF 100 *(1 - (node_filesystem_free{mountpoint="/"}  / node_filesystem_size{ mountpoint="/"}) ) > 80
+  LABELS {
+    severity="CRITICAL"
+  }
+  ANNOTATIONS {
+    summary = "{{ $labels.group }}-{{ $labels.instance }} High filesystem usage is detected",
+    description = "This device's filesystem usage has exceeded the threshold with a value of {{ $value }}.",
+  }

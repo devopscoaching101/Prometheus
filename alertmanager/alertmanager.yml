@@ -1,0 +1,46 @@
+global:
+  slack_api_url: "https://hooks.slack.com/services/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"
+route:
+  receiver: default
+  group_wait: 10s
+  group_interval: 1m
+  repeat_interval: 4h
+  routes:
+  - receiver: email-QA
+    match:
+      group: 'QA-trad'
+  - receiver: email-prod
+    match:
+      group: 'Production-trad'
+receivers:
+- name: "default"
+  email_configs:
+  - to: 'solitairemonitoring@.com'
+    html: '{{ template "email" . }}'
+    from: 'no-reply@srkay.com'
+    smarthost: 'smtp.office365.com:587'
+#    require_tls: true
+    auth_username: 'no-reply@.com'
+    auth_identity: 'no-reply@.com'
+    auth_password: 'fz,S1BSnB7Sphv|-'
+- name: "email-QA"
+  email_configs:
+  - to: 'solitairemonitoring@.com'
+    html: '{{ template "email" . }}'
+    from: 'no-reply@.com'
+    smarthost: 'smtp.office365.com:587'
+    auth_username: 'no-reply@.com'
+    auth_identity: 'no-reply@'
+    auth_password: 'fz,S1BSnB7Sphv|-'
+- name: "email-prod"
+  email_configs:
+  - to: 'solitairemonitoring@.com'
+    html: '{{ template "email" . }}'
+    from: 'no-reply@.com'
+    require_tls: true
+    smarthost: 'smtp.office365.com:587'
+    auth_username: 'no-reply@.com'
+    auth_identity: 'no-reply@.com'
+    auth_password: 'fz,S1BSnB7Sphv|-'
+templates:
+  - '/home/prometheus/server/AlertManager/alertmanager-0.7.1.linux-amd64/html/temp/email.html'

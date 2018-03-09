@@ -1,0 +1,10 @@
+[unit]
+Description=mtail service,pravin.magdum@crevise.com,priyanka.dive@crevise.com
+After=network-online.target
+
+[Service]
+User=ubuntu
+Restart=on-failure
+ExecStart= /home/ubuntu/monitor/NodeExporter/process_exporter.sh "dashboard-ms" >/home/ubuntu/monitor/NodeExporter/logs/process_exporter.log
+[Install]
+WantedBy=multi-user.target
